@@ -1,0 +1,34 @@
+Main Menu/Disk/Optimise
+
+error:
+Optimize-Volume : The volume optimization operation requested
+is not supported by the hardware backing the volume.                                                               
+Activity ID: {0e83dfba-0728-407e.....}     
+
+The error message suggests that the requested operation is not
+ supported by the hardware backing the volume. This could mean
+ that the hardware does not support the "ReTrim" operation, 
+which is used in the Optimize-Volume cmdlet to reclaim unused
+ space from solid-state drives (SSDs).
+
+
+
+
+To resolve this error, you can try removing the "-ReTrim" 
+parameter from the Optimize-Volume cmdlet, like this:                                                                                                                         In Zeile:1 Zeichen:1                                                                                                                                                             + Optimize-Volume -DriveLetter C -ReTrim -Verbose                                                                                                                                + ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~                                                                                                                                    + CategoryInfo          : NotSpecified: (StorageWMI:ROOT/Microsoft/...age/MSFT_Volume) [Optimize-Volume], CimException                                                           + FullyQualifiedErrorId : StorageWMI 43022,Optimize-Volume  
+
+
+
+Disable or remove this line
+#Optimize-Volume -DriveLetter C -ReTrim -Verbose 
+
+Enable or rplace this line
+Optimize-Volume -DriveLetter C -Verbose
+
+
+This will perform a default optimization of the C drive
+without using the ReTrim operation. If you still get an error, 
+it could mean that your hardware does not support any optimization 
+operations, in which case you may
+need to use a third-party defragmentation tool or contact the 
+hardware vendor for support

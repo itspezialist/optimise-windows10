@@ -1,0 +1,58 @@
+When you choose Main Menu/ Disk/ Optimize Disk
+you might get an error.
+
+This scripts uses: the "dfrgui" tool insted of "Slab Consolidation"
+to analyse and optimise the Disk because "Slab Consolidation" feature
+is not supported on my Disk.
+
+
+
+"Slab Consolidation" feature:
+This feature is only available 
+on certain types of drives, such as Solid State Drives (SSDs) 
+and some newer hard disk drives (HDDs).
+DISABLE IT WITHIN THE SCRIPT WHEN YOU GET ERROR: 
+"Slab Consolidation NOT SUPPOERTED on this HDD"
+
+Enable by removing hash sign: 
+Optimize-Volume -DriveLetter C -Defrag -SlabConsolidate -Verbose
+
+Disable it by adding hash sign: 
+#Optimize-Volume -DriveLetter C -Defrag -SlabConsolidate -Verbose
+
+Also disable:
+dfrgui
+if you want to use "SlabConsolidate" instead
+
+
+
+how to change the settings at:  3  Optimize Disk 
+view example of section code below 
+---------------------------------------------
+
+
+   2 { # Disk
+            do {
+                Write-Host "Disk:`n"
+                for ($i=0; $i -lt $diskMenu.Count; $i++) {
+                    Write-Host ($i+1).ToString() + ") " + $diskMenu[$i]
+                }
+
+                $choice2 = Read-Host "`nEnter a choice"
+                Write-Host ""
+
+                switch ($choice2) {
+                    1 { # Display disk usage, (Used space  |   Free space)#
+						Get-PSDrive | Where-Object {$_.Free -ne $null} | Select-Object Name, Used, Free, @{Name="Capacity(GB)";Expression={"{0:N2}" -f ($_.Used + $_.Free) / 1GB}}, @{Name="FreeSpace(GB)";Expression={"{0:N2}" -f $_.Free / 1GB}}, @{Name="UsedSpace(GB)";Expression={"{0:N2}" -f $_.Used / 1GB}} | Format-Table -AutoSize
+                        #Get-PSDrive | Where-Object { $_.Provider -eq "FileSystem" } | Select-Object Name, Used, Free, @{Name="Capacity"; Expression={ "{0:N2}" -f ($_.Used + $_.Free) }}
+                    }
+                    2 { # Defragment disk
+                        Defrag.exe C: -v
+                    }
+                    3 { # Optimize Disk (HAVE DISABLED IT DUE TO SATA DRIVE NOT COMPATIBLE)#
+					    	#NOTE!!!>>> "Slab Consolidation" feature. This feature is only available 
+						#on certain types of drives, such as Solid State Drives (SSDs) and some newer hard disk drives (HDDs).
+						#DISABLE IT WHEN YOU GET ERROR: NOT SUPPOERTED
+                        			#Optimize-Volume -DriveLetter C -Defrag -SlabConsolidate -Verbose
+
+---------------------------------------------

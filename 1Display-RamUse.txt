@@ -1,0 +1,66 @@
+To display RAM use: only Display RAM usage you have to select and enter twice.
+The other menu items work fine.
+
+enter 1 + )  + Display RAM usage: Enter
+then again
+enter 1 + )  + Display RAM usage: Enter
+-------------------------
+
+
+start script:
+.\optimise.ps1
+
+
+Enter a choice: 1
+
+RAM:
+
+1 + )  + Display RAM usage
+2 + )  + Free up RAM: Only for troubleshooting, NOT TO FREE UP RAM FOR OPTIMIZATION!!!
+3 + )  + Adjust Virtual Memory
+4 + )  + Go back to Main Menu
+
+
+Enter a choice: 1
+
+
+RAM:
+
+1 + )  + Display RAM usage
+2 + )  + Free up RAM: Only for troubleshooting, NOT TO FREE UP RAM FOR OPTIMIZATION!!!
+3 + )  + Adjust Virtual Memory
+4 + )  + Go back to Main Menu
+
+Enter a choice: 1
+
+Name               WorkingSet
+----               ----------
+explorer            244424704
+chrome              227917824
+AVGSvc              224043008
+Memory Compression  161148928
+chrome              144052224
+chrome              138678272
+chrome              132943872
+chrome              121643008
+SearchApp           107175936
+chrome              104873984
+explorer            244424704
+chrome              227917824
+AVGSvc              224043008
+Memory Compression  161169408
+chrome              144093184
+chrome              138678272
+chrome              132943872
+chrome              121643008
+SearchApp           107175936
+chrome              104873984
+
+-------------------
+Main Menu:
+
+1 + )  + RAM
+2 + )  + Disk
+3 + )  + Exit
+
+Enter a choice: 
